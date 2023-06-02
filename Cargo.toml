@@ -1,8 +1,9 @@
 [package]
-name = "geolocation"
+name = "geolocation_utils"
 version = "0.1.0"
 edition = "2021"
 authors = ["Devin Bidwell <dbidwell94@biddydev.com"]
+license = "MIT"
 
 [features]
 serde = []
