@@ -16,7 +16,7 @@ impl Coordinate {
     ///
     /// ## Example
     /// ```rust
-    /// use geolocation::Coordinate;
+    /// use geolocation_utils::Coordinate;
     ///
     /// let coordinate = Coordinate::new(34.8, -2.8);
     /// ```

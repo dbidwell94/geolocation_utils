@@ -22,7 +22,7 @@ impl CoordinateBoundaries {
     ///
     /// # Example
     /// ```rust
-    /// use geolocation::{Coordinate, CoordinateBoundaries};
+    /// use geolocation_utils::{Coordinate, CoordinateBoundaries};
     ///
     /// let coords = Coordinate::new(0.0, 0.0);
     /// let bounds = CoordinateBoundaries::new(coords, 12.0, None);
@@ -54,7 +54,7 @@ impl CoordinateBoundaries {
     /// Get the max longitude for the coords bounds
     /// # Example
     /// ```rust
-    /// use geolocation::{Coordinate, CoordinateBoundaries};
+    /// use geolocation_utils::{Coordinate, CoordinateBoundaries};
     /// 
     /// let coord = Coordinate::new(0.0, 0.0);
     /// let bounds = CoordinateBoundaries::new(coord, 1.0, None).unwrap();
@@ -70,7 +70,7 @@ impl CoordinateBoundaries {
     /// Get the min longitude for the coords bounds
     /// # Example
     /// ```rust
-    /// use geolocation::{Coordinate, CoordinateBoundaries};
+    /// use geolocation_utils::{Coordinate, CoordinateBoundaries};
     /// 
     /// let coord = Coordinate::new(0.0, 0.0);
     /// let bounds = CoordinateBoundaries::new(coord, 1.0, None).unwrap();
@@ -86,7 +86,7 @@ impl CoordinateBoundaries {
     /// Get the max latitude for the coords bounds
     /// # Example
     /// ```rust
-    /// use geolocation::{Coordinate, CoordinateBoundaries};
+    /// use geolocation_utils::{Coordinate, CoordinateBoundaries};
     /// 
     /// let coord = Coordinate::new(0.0, 0.0);
     /// let bounds = CoordinateBoundaries::new(coord, 1.0, None).unwrap();
@@ -102,7 +102,7 @@ impl CoordinateBoundaries {
     /// Get the min latitude for the coords bounds
     /// # Example
     /// ```rust
-    /// use geolocation::{Coordinate, CoordinateBoundaries};
+    /// use geolocation_utils::{Coordinate, CoordinateBoundaries};
     /// 
     /// let coord = Coordinate::new(0.0, 0.0);
     /// let bounds = CoordinateBoundaries::new(coord, 1.0, None).unwrap();
@@ -118,7 +118,7 @@ impl CoordinateBoundaries {
     /// Sets the coordinates used to calculate bounds
     /// # Example
     /// ```rust
-    /// use geolocation::{Coordinate, CoordinateBoundaries};
+    /// use geolocation_utils::{Coordinate, CoordinateBoundaries};
     /// 
     /// let coords = Coordinate::new(0.0, 0.0);
     /// let mut bounds = CoordinateBoundaries::new(coords, 1.0, None).unwrap();
@@ -148,7 +148,7 @@ impl CoordinateBoundaries {
     /// Sets the distance and optionally the distance unit to calculate bounds
     /// # Example
     /// ```rust
-    /// use geolocation::{Coordinate, CoordinateBoundaries};
+    /// use geolocation_utils::{Coordinate, CoordinateBoundaries};
     /// 
     /// let coords = Coordinate::new(0.0, 0.0);
     /// let mut bounds = CoordinateBoundaries::new(coords, 1.0, None).unwrap();
