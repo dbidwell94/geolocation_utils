@@ -4,6 +4,8 @@ version = "0.1.0"
 edition = "2021"
 authors = ["Devin Bidwell <dbidwell94@biddydev.com"]
 license = "MIT"
+description = "A repository which will allow easier calculations of bounds based on latitude and longitude coordinates"
+repository = "https://github.com/dbidwell94/geolocation_utils"
 
 [features]
 serde = []
