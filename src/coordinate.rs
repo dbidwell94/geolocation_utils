@@ -73,8 +73,6 @@ impl Coordinate {
         let distance = c * EARTH_RADIUS_KM * linear_divisor(&DistanceUnit::Kilometers);
         let radius = radius * linear_divisor(distance_unit);
 
-        println!("Radius: {radius}M, Distance: {distance}M");
-
         return distance <= radius;
     }
 }
