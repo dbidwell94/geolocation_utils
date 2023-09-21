@@ -1,9 +1,5 @@
 use crate::{Coordinate, DistanceUnit};
-
-const LATITUDE_DISTANCE_IN_MILES: f64 = 69.0;
-const LATITUDE_DISTANCE_IN_NAUTICAL_MILES: f64 = 60.0;
-const LATITUDE_DISTANCE_IN_KILOMETERS: f64 = 111.045;
-const LATITUDE_DISTANCE_IN_METERS: f64 = 111045.0;
+use crate::utils::{divisor};
 
 pub struct CoordinateBoundaries {
     latitude: f64,
@@ -177,7 +173,7 @@ impl CoordinateBoundaries {
     /// # Summary
     /// Calculate min_lat, max_lat, min_lon, and max_lon bounds
     fn calculate(unit: &DistanceUnit, distance: f64, lat: f64, lon: f64) -> (f64, f64, f64, f64) {
-        let divisor = Self::divisor(unit);
+        let divisor = divisor(unit);
 
         let latitude_conversion_factor = distance / divisor;
 
@@ -189,15 +185,6 @@ impl CoordinateBoundaries {
         let min_longitude = lon - longitude_conversion_factor;
         let max_longitude = lon + longitude_conversion_factor;
         (min_latitude, max_latitude, min_longitude, max_longitude)
-    }
-
-    fn divisor(unit: &DistanceUnit) -> f64 {
-        match unit {
-            DistanceUnit::Miles => LATITUDE_DISTANCE_IN_MILES,
-            DistanceUnit::NauticalMiles => LATITUDE_DISTANCE_IN_NAUTICAL_MILES,
-            DistanceUnit::Kilometers => LATITUDE_DISTANCE_IN_KILOMETERS,
-            DistanceUnit::Meters => LATITUDE_DISTANCE_IN_METERS,
-        }
     }
 
     fn validate(coord: &Coordinate) -> bool {
