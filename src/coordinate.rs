@@ -23,6 +23,11 @@ impl Coordinate {
     /// let coordinate = Coordinate::new(34.8, -2.8);
     /// assert_eq!(34.8, coordinate.latitude);
     /// assert_eq!(-2.8, coordinate.longitude);
+    /// 
+    /// // Overflowing coordinate
+    /// let coordinate = Coordinate::new(91.6275, -181.875);
+    /// assert_eq!(-88.3725, coordinate.latitude);
+    /// assert_eq!(178.125, coordinate.longitude);
     /// ```
     pub fn new(lat: f64, lon: f64) -> Self {
         Self {

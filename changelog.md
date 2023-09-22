@@ -1,3 +1,5 @@
+# 0.2.2
+- Updated documentation for the `Coordinate::new()` function
 # 0.2.1
 - Added guard to the `Coordinate::new()` method which will prevent overflow of lat / long coordinate if not within the required 90 / 180 degree bounds
 # 0.2.0

@@ -1,6 +1,6 @@
 [package]
 name = "geolocation_utils"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2021"
 authors = ["Devin Bidwell <dbidwell94@biddydev.com"]
 license = "MIT"
