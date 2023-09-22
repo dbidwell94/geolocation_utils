@@ -54,13 +54,36 @@ impl Coordinate {
         radius: f64,
         distance_unit: &DistanceUnit,
     ) -> bool {
+        let distance = self.get_distance_from(other_coordinate, distance_unit);
+        let radius = radius * linear_divisor(distance_unit);
+
+        return distance <= radius;
+    }
+
+    /// # Summary
+    /// Gets the distance between 2 coordinates
+    ///
+    /// ## Example
+    /// ```rust
+    /// use geolocation_utils::{Coordinate, DistanceUnit};
+    /// let coordinate1 = Coordinate::new(1.0, 1.0);
+    /// let coordinate2 = Coordinate::new(0.0, 0.0);
+    /// 
+    /// let distance = coordinate1.get_distance_from(&coordinate2, &DistanceUnit::Kilometers);
+    /// 
+    /// // Rounding because output number is 157.24938127194397
+    /// let rounded_distance = (distance * 100.0).round() / 100.0;
+    /// 
+    /// assert_eq!(157.25, rounded_distance);
+    /// ```
+    pub fn get_distance_from(&self, other: &Coordinate, unit: &DistanceUnit) -> f64 {
         // Formula from https://www.geeksforgeeks.org/program-distance-two-points-earth/
         let pi = std::f64::consts::PI;
 
         let lat1 = self.latitude * pi / 180.0;
-        let lat2 = other_coordinate.latitude * pi / 180.0;
+        let lat2 = other.latitude * pi / 180.0;
         let lon1 = self.longitude * pi / 180.0;
-        let lon2 = other_coordinate.longitude * pi / 180.0;
+        let lon2 = other.longitude * pi / 180.0;
 
         let d_lon = lon2 - lon1;
         let d_lat = lat2 - lat1;
@@ -70,9 +93,7 @@ impl Coordinate {
 
         let c = 2.0 * (a.sqrt()).asin();
 
-        let distance = c * EARTH_RADIUS_KM * linear_divisor(&DistanceUnit::Kilometers);
-        let radius = radius * linear_divisor(distance_unit);
-
-        return distance <= radius;
+        let distance_meters = (c * EARTH_RADIUS_KM) * linear_divisor(&DistanceUnit::Kilometers);
+        return distance_meters / linear_divisor(unit);
     }
 }
