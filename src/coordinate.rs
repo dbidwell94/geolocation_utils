@@ -1,4 +1,4 @@
-use crate::utils::{linear_divisor, EARTH_RADIUS_KM};
+use crate::utils::{linear_divisor, EARTH_RADIUS_KM, wrap_to_bounds};
 use crate::DistanceUnit;
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -14,27 +14,25 @@ pub struct Coordinate {
 
 impl Coordinate {
     /// # Summary
-    /// Construct a new Coordinate
+    /// Construct a new Coordinate. Automatically prevents overflow of lat / long coordinates
     ///
     /// ## Example
     /// ```rust
     /// use geolocation_utils::Coordinate;
     ///
     /// let coordinate = Coordinate::new(34.8, -2.8);
+    /// assert_eq!(34.8, coordinate.latitude);
+    /// assert_eq!(-2.8, coordinate.longitude);
     /// ```
     pub fn new(lat: f64, lon: f64) -> Self {
         Self {
-            latitude: lat,
-            longitude: lon,
+            latitude: wrap_to_bounds(lat, 90.0),
+            longitude: wrap_to_bounds(lon, 180.0),
         }
     }
 
     /// # Summary
     /// Checks if a coordinate is within the radius of another coordinate.
-    ///
-    /// ## Notes
-    /// - Uses the Haversine formula
-    /// - Implementation taken from https://www.geeksforgeeks.org/program-distance-two-points-earth/
     ///
     /// ## Example
     /// ```rust
@@ -62,6 +60,10 @@ impl Coordinate {
 
     /// # Summary
     /// Gets the distance between 2 coordinates
+    ///
+    /// ## Notes
+    /// - Uses the Haversine formula
+    /// - Implementation taken from https://www.geeksforgeeks.org/program-distance-two-points-earth/
     ///
     /// ## Example
     /// ```rust
